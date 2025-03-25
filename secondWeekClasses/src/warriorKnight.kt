@@ -33,9 +33,11 @@ class Knight: Warrior () {
 fun fight(fighter1: Warrior, fighter2: Warrior): Boolean {
     var round: Int = 0
     while(fighter1.isAlive && fighter2.isAlive) {
-        println("Round: $round\n Health Fighter1: ${fighter1.health} and Fighter2: ${fighter2.health} \n")
+        println("Before attack. Round: $round\n Health Fighter1: ${fighter1.health} and Fighter2: ${fighter2.health} \n")
         fighter2.health -= fighter1.attack
+        if(!fighter2.isAlive) break
         fighter1.health -= fighter2.attack
+        println("After attack. Round: $round\n Health Fighter1: ${fighter1.health} and Fighter2: ${fighter2.health} \n")
         round++
     }
     return fighter1.isAlive
@@ -45,6 +47,6 @@ fun main() {
     val knight: Knight = Knight()
     val warrior: Warrior = Warrior()
 
-    val result= fight(warrior, knight)
+    val result= fight(knight, warrior)
     println("is the first fighter still Alive? $result")
 }
